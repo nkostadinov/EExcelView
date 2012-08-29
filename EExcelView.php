@@ -212,8 +212,10 @@
 					header('Content-type: '.$this->mimeTypes[$this->exportType]['Content-type']);
 					header('Content-Disposition: attachment; filename="'.$this->filename.'.'.$this->mimeTypes[$this->exportType]['extension'].'"');
 					header('Cache-Control: max-age=0');				
-					$objWriter->save('php://output');			
+					$objWriter->save('php://output');
+					ob_start();
 					Yii::app()->end();
+					ob_end_clean();
 				}
 			} else
 				parent::run();
