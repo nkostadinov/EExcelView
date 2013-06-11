@@ -79,6 +79,9 @@
 				$this->grid_mode = 'grid';
 				Yii::log("PHP Excel lib not found($lib). Export disabled !", CLogger::LEVEL_WARNING, 'EExcelview');
 			}
+
+			if($this->disablePaging) //if needed disable paging to export all data
+				$this->dataProvider->pagination = false;
 				
 			if($this->grid_mode == 'export')
 			{			
@@ -125,9 +128,6 @@
 
 		public function renderBody()
 		{
-			if($this->disablePaging) //if needed disable paging to export all data
-				$this->dataProvider->pagination = false;
-
 			$data=$this->dataProvider->getData();
 			$n=count($data);
 
