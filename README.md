@@ -57,6 +57,7 @@ $this->widget('EExcelView', array(
      'dataProvider'=> $dataprovider,
      'title'=>'Title',
      'autoWidth'=>false,
+     'template'=>"{summary}\n{items}\n{exportbuttons}\n{pager}",
       ..... other options 
 ));
 ~~~
