@@ -14,6 +14,7 @@
 		public $subject = 'Subject';
 		public $description = '';
 		public $category = '';
+		public $sheetTitle = 'Sheet1';
 
 		//the PHPExcel object
 		public $objPHPExcel = null;
@@ -198,6 +199,7 @@
 				if($this->autoWidth)
 					foreach($this->columns as $n=>$column)
 						$this->objPHPExcel->getActiveSheet()->getColumnDimension($this->columnName($n+1))->setAutoSize(true);
+				$this->objPHPExcel->getActiveSheet()->setTitle($this->sheetTitle);
 				//create writer for saving
 				$objWriter = PHPExcel_IOFactory::createWriter($this->objPHPExcel, $this->exportType);
 				if(!$this->stream)
