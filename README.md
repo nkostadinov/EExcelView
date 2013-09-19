@@ -3,7 +3,7 @@ EExcelView
 
 [Forum thread](http://www.yiiframework.com/forum/index.php/topic/18119-extensioneexcelview "Forum thread")
 
-This is my first extension ever :). It is a wrapper of [PHPExcel](http://phpexcel.codeplex.com/ "PHPExcel") that extends from CGrivView. The main idea is to easily export already defined grids to excel files. You can use the same array of parameters that the grid uses plus an aditional specific params, which are:
+This is a wrapper of [PHPExcel](http://phpexcel.codeplex.com/ "PHPExcel") that extends from CGrivView. The main idea is to easily export already defined grids to excel files. You can use the same array of parameters that the grid uses plus an aditional specific params, which are:
 
 ##Configuraiton
 
@@ -30,21 +30,50 @@ Yii 1.1 or above and [PHPExcel](http://phpexcel.codeplex.com/ "PHPExcel") librar
 
 ##Usage
 
-The usage is like using CGridView:
+####Step 1. 
+Download [PHPExcel](http://phpexcel.codeplex.com/ "PHPExcel") library and extract it to your extenstions folder (protected/extensions).
+
+####Step 2. 
+Download this extension and put it in extensions/EExcelView folder.
+
+####Step 3. (optional)
+Add the path to your config file main.php
+
+~~~
+[php]
+
+		// autoloading model and component classes
+		'import'=>array(
+			.............
+			'ext.EExcelView.*',
+		),
+~~~
+
+####Step 4. 
+The usage is like using CGridView(if you didnt put the extension in the import array(Step.3) then you need to use "ext.EExcelView.EExcelView":
 ~~~
 [php]
 $this->widget('EExcelView', array(
      'dataProvider'=> $dataprovider,
      'title'=>'Title',
      'autoWidth'=>false,
+     'template'=>"{summary}\n{items}\n{exportbuttons}\n{pager}",
       ..... other options 
 ));
 ~~~
 
 ##Note
 The path of the PHPExcel library is hardcoded to: **application.extensions.phpexcel.Classes.PHPExcel**
-
 Asuming that you have extracted the lib under extensions folder. I will change that later.
+
+The PHPExcel lib requires:
+
+- PHP version 5.2.0 or higher
+- PHP extension php_zip enabled *)
+- PHP extension php_xml enabled
+- PHP extension php_gd2 enabled (if not compiled in)
+
+## Release notes
 
 #### ver 0.32
 - Fixed the CButtonColumn bug "Property "CButtonColumn"."name" is not defined"...
