@@ -28,6 +28,7 @@
 		public $stream = true; //stream to browser
 		public $grid_mode = 'grid'; //Whether to display grid ot export it to selected format. Possible values(grid, export)
 		public $grid_mode_var = 'grid_mode'; //GET var for the grid mode
+		public $rtl_sheet = false;
 		
 		//buttons config
 		public $exportButtonsCSS = 'summary';
@@ -100,6 +101,8 @@
 				$this->objPHPExcel->getProperties()->setSubject($this->subject);
 				$this->objPHPExcel->getProperties()->setDescription($this->description);
 				$this->objPHPExcel->getProperties()->setCategory($this->category);
+				if($this->rtl_sheet === true)
+                                    $this->objPHPExcel->getActiveSheet()->setRightToLeft (true);
 			} else
 				parent::init();
 		}
