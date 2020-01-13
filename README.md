@@ -1,11 +1,32 @@
 EExcelView
 ----------------------
 
-[Forum thread](http://www.yiiframework.com/forum/index.php/topic/18119-extensioneexcelview "Forum thread")
+This is a wrapper of [PHPSpreadsheet](https://phpspreadsheet.readthedocs.io/en/latest/ "PHPSpreadsheet") that extends from CGridView. 
+The main idea is to easily export already defined grids to excel files. 
+You can use the same array of parameters that the grid uses plus an aditional specific params, which are:
 
-This is a wrapper of [PHPExcel](http://phpexcel.codeplex.com/ "PHPExcel") that extends from CGrivView. The main idea is to easily export already defined grids to excel files. You can use the same array of parameters that the grid uses plus an aditional specific params, which are:
+## Usage
 
-##Configuraiton
+The usage is like using CGridView:
+
+```php
+$this->widget('EExcelView', array(
+     'dataProvider'=> $dataprovider,
+     'title' => 'Title',
+     'autoWidth' => false,
+     'template' => "{summary}\n{items}\n{exportbuttons}\n{pager}",
+      ... other options ...
+));
+```
+
+If you didn't put the extension in the import array (Installation Step 4 below) 
+then you need to add the following above the widget call:
+
+~~~
+Yii::import('ext.EExcelView');
+~~~
+
+### Options you can pass
 
 Document properties
 
@@ -15,29 +36,52 @@ Document properties
 
 Other params
 
--  libPath - path to PHPExcel, defaults to 'ext.phpexcel.Classes.PHPExcel'
--  autoWidth - whether to auto extend cells for the content(default true)
--  exportType - the type of the export, all possible types of PHPExcel lib(Excel5, Excel2007,PDF, HTML)
+-  exportType - The file type to export to - defaults to xls.  These are PHPSpreadsheet writer types: Xls, Xlsx, Ods, Csv, Html, Tcpdf, Dompdf, Mpdf .  Can also be passed as a GET var
+-  autoWidth - whether to auto extend cells for the content (default true)
 -  disablePaging - if set to true, it will export all data (default true)
 -  filename - the full path of the filename to export to. If null it will stream to the browser
 -  stream - true/false stream to browser or save to file.
 -  grid_mode - Whether to display grid or to export it to selected format. Possible values(grid, export)
 -  grid_mode_var - defaults to 'grid_mode' GET var for the grid mode
+-  sheetTitle - the title of the current sheet.  Default Sheet1
+-  rtl_sheet - whether to set the sheet as right-to-left
 
-##Requirements
+## Requirements
 
-Yii 1.1 or above and [PHPExcel](http://phpexcel.codeplex.com/ "PHPExcel") library
+Yii 1.1, Composer.
 
-##Usage
+## Installation
 
-####Step 1. 
-Download [PHPExcel](http://phpexcel.codeplex.com/ "PHPExcel") library and extract it to your extenstions folder (protected/extensions).
+### Step 1 - Create/update your composer.json file
 
-####Step 2. 
+Create or update your composer.json inside the protected/ folder. 
+Inside there, add the following line to the require section of composer.json:
+
+````
+  "require": {
+    ...
+    "phpoffice/phpspreadsheet": ">= 1.10.1"
+    ...
+  },
+````
+
+Then run composer update.
+
+### Step 2 - Add composer's autoloader (if you've not already done so)
+
+Inside your entrypoint (index.php in the root of the project), just above where the Yii framework is require_once'd, add:
+````
+// Autoload including composer
+require_once(__DIR__ . '/protected/vendor/autoload.php');
+````
+
+### Step 3 - Download and install this extension
+ 
 Download this extension and put it in extensions/EExcelView folder.
 
-####Step 3. (optional)
-Add the path to your config file main.php
+### Step 4. (Optional) Add the path to your config file
+
+Add the following to the import section in your config file:
 
 ~~~
 [php]
@@ -49,31 +93,11 @@ Add the path to your config file main.php
 		),
 ~~~
 
-####Step 4. 
-The usage is like using CGridView(if you didnt put the extension in the import array(Step.3) then you need to use "ext.EExcelView.EExcelView":
-~~~
-[php]
-$this->widget('EExcelView', array(
-     'dataProvider'=> $dataprovider,
-     'title'=>'Title',
-     'autoWidth'=>false,
-     'template'=>"{summary}\n{items}\n{exportbuttons}\n{pager}",
-      ..... other options 
-));
-~~~
-
-##Note
-The path of the PHPExcel library is hardcoded to: **application.extensions.phpexcel.Classes.PHPExcel**
-Asuming that you have extracted the lib under extensions folder. I will change that later.
-
-The PHPExcel lib requires:
-
-- PHP version 5.2.0 or higher
-- PHP extension php_zip enabled *)
-- PHP extension php_xml enabled
-- PHP extension php_gd2 enabled (if not compiled in)
-
 ## Release notes
+
+### ver 0.4
+- Migrated to use PHPSpreadsheet rather than PHPExcel
+- Migrated to use composer
 
 #### ver 0.32
 - Fixed the CButtonColumn bug "Property "CButtonColumn"."name" is not defined"...
