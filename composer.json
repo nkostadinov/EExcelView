@@ -2,6 +2,7 @@
     "name": "nkostadinov/yii-eexcelview",
     "description": "Yii extension which provides replacement of CGridView with support of export to different types.",
     "type": "yii-extension",
+    "version": "0.1",
     "require": {
         "yiisoft/yii": "1.1",
         "php": "5.3",
@@ -14,5 +15,8 @@
             "email": "nikolakk@gmail.com"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "autoload": {
+        "files": ["vendor/nkostadinov/yii-eexcelview/EExcelView.php"]
+    }
 }
