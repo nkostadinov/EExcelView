@@ -6,7 +6,7 @@
     "require": {
         "yiisoft/yii": "~1.1",
         "php": ">=5.3",
-        "phpoffice/phpspreadsheet": "~1.0.0"
+        "phpoffice/phpspreadsheet": "~1.8.0"
     },
     "license": "MIT",
     "authors": [
