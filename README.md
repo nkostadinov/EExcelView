@@ -54,6 +54,10 @@ Yii 1.1, Composer.
 
 ### Step 1 - Create/update your composer.json file
 
+Run `composer require nkostadinov/yii-eexcelview`
+
+or
+
 Create or update your composer.json inside the protected/ folder. 
 Inside there, add the following line to the require section of composer.json:
 

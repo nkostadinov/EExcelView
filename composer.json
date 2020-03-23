@@ -16,7 +16,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "autoload": {
-        "files": ["vendor/nkostadinov/yii-eexcelview/EExcelView.php"]
-    }
+	"autoload": {
+		"files": [
+			"EExcelView.php"
+		]
+	}
 }

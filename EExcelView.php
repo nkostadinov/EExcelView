@@ -162,7 +162,7 @@ class EExcelView extends CGridView
     ];
 
     /** @var PhpOffice\PhpSpreadsheet\Spreadsheet $objPhpSpreadsheet */
-    private $objPhpSpreadsheet = null;
+    protected $objPhpSpreadsheet = null;
 
     /**
      * @throws CException
@@ -207,7 +207,7 @@ class EExcelView extends CGridView
     /**
      * Fetches and validates GET parameters passed in
      */
-    private function assignGetParameters()
+    protected function assignGetParameters()
     {
         if(isset($_GET[$this->grid_mode_var]) && preg_match('/^(export|grid)$/', $_GET[$this->grid_mode_var]) ) {
             $this->grid_mode = $_GET[$this->grid_mode_var];
@@ -409,7 +409,7 @@ class EExcelView extends CGridView
     * From le_top @ yiiframework.com
     *
     */
-    private static function cleanOutput()
+    protected static function cleanOutput()
     {
         for($level=ob_get_level();$level>0;--$level)
         {
