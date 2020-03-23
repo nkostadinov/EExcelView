@@ -7,9 +7,9 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 Yii::import('zii.widgets.grid.CGridView');
 
 /**
-* @authors Nikola Kostadinov, Dan Straw
+* @authors Nikola Kostadinov, Dan Straw, Ilya Sheershoff
 * @license MIT License
-* @version 1.0
+* @version 0.3
 */
 class EExcelView extends CGridView
 {
